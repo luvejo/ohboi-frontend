@@ -34,4 +34,13 @@ export default {
     margin: 0px;
   }
 }
+
+/*----------------------------------------------
+  MEDIA QUERIES
+-----------------------------------------------*/
+@media screen and (min-width: 480px) {
+  .main-header {
+    margin-top: 30px;
+  }
+}
 </style>

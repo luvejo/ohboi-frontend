@@ -44,7 +44,7 @@ export default {
 
   fontawesome: {
     icons: {
-      solid: ['faAngleLeft', 'faAngleRight'],
+      solid: ['faAngleLeft', 'faAngleRight', 'faBars', 'faTimes'],
     },
   },
 

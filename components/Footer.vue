@@ -52,6 +52,7 @@ footer {
     }
   }
   .me {
+    padding: 10px;
     background-color: vars.$black;
   }
 }

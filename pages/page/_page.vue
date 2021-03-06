@@ -13,7 +13,7 @@
         :text="story.text"
       />
 
-      <nav>
+      <nav class="pagination-controls">
         <p class="current-page-label">
           Page
           <input v-model="pages.current" type="text" class="page" /> of
@@ -75,11 +75,12 @@ export default {
   flex-direction: row-reverse;
 }
 .story-list {
-  nav {
+  .pagination-controls {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
-  nav .page {
+  .pagination-controls .page {
     border: none;
     background-color: vars.$white;
     padding: 10px;

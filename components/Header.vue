@@ -1,16 +1,11 @@
 <template>
   <header class="main-column-limit main-header">
-    <h1>Oh boi <Orange /></h1>
-    <p>Share those cringe —almost surreal— stories that keep you up at night</p>
+    <slot></slot>
   </header>
 </template>
 
 <script>
-import Orange from '@/components/Orange'
-
-export default {
-  components: { Orange },
-}
+export default {}
 </script>
 
 <style lang="scss">

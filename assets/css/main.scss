@@ -95,3 +95,8 @@ a {
   font-weight: 700;
   cursor: pointer;
 }
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+  color: vars.$gray;
+}

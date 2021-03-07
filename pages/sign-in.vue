@@ -1,0 +1,137 @@
+<template>
+  <div class="sign-in-form main-column-limit">
+    <Header>
+      <h1>Sign in</h1>
+    </Header>
+
+    <form method="post" class="form-group" @submit.prevent="onSubmit">
+      <div v-if="error" class="error">{{ error }}</div>
+      <input v-model="username" type="text" placeholder="Email" />
+      <input v-model="password" type="text" placeholder="Password" />
+      <button class="btn btn-dark-green" type="submit">Sign in</button>
+    </form>
+
+    <a href="#" class="suggested-link">Create account</a>
+
+    <div class="separator">
+      <div class="line"></div>
+      <p>or just</p>
+      <div class="line"></div>
+    </div>
+
+    <a :href="googleOAuthURL" class="btn btn-dark-green social-button">
+      <font-awesome-icon :icon="['fab', 'google']" />
+      <p>Sign in with <span>Google</span></p>
+    </a>
+  </div>
+</template>
+
+<script>
+import api from '@/api'
+
+export default {
+  data() {
+    return {
+      username: 'jose@undefned.sh',
+      password: 'secret',
+      error: false,
+    }
+  },
+  computed: {
+    googleOAuthURL() {
+      return api.auth.googleOAuthURL
+    },
+  },
+  methods: {
+    async onSubmit() {
+      this.error = ''
+
+      const res = await api.auth.signIn({
+        creds: {
+          username: this.username,
+          password: this.password,
+        },
+      })
+
+      if ('error' in res) {
+        this.error = res.message
+      }
+
+      if ('user' in res) {
+        this.$router.push('/')
+      }
+    },
+  },
+}
+</script>
+
+<style lang="scss">
+@use '@/assets/css/vars' as vars;
+
+.form-group {
+  border-radius: vars.$border-radius;
+  border: 1px solid vars.$dark-green;
+
+  :first-child {
+    border-radius: 20px 20px 0 0;
+    border-top: none;
+  }
+  :last-child {
+    border-radius: 0 0 20px 20px;
+  }
+  .error {
+    padding: 15px 20px;
+    background-color: vars.$pink;
+    color: vars.$black;
+    text-align: center;
+  }
+  input {
+    border: none;
+    padding: 15px 20px;
+    width: 100%;
+    color: vars.$black;
+    border-top: 1px solid vars.$dark-green;
+  }
+  button {
+    border-top: 1px solid vars.$dark-green;
+    display: block;
+    width: 100%;
+  }
+}
+.sign-in-form .suggested-link {
+  margin-top: 10px;
+  text-align: center;
+  display: block;
+  color: vars.$dark-green;
+  text-decoration: underline;
+}
+.separator {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+
+  .line {
+    border-bottom: 1px solid vars.$middle-green;
+    flex-grow: 1;
+  }
+  p {
+    margin: 0px 10px;
+  }
+}
+.social-button {
+  width: 100%;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    margin-left: 10px;
+  }
+  span {
+    font-weight: 700;
+  }
+}
+</style>

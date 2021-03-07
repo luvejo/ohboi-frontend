@@ -3,12 +3,12 @@
     <div class="menu-container main-column-limit">
       <nav class="desktop-menu">
         <div class="left">
-          <a href="#">Home</a>
+          <NuxtLink to="/">Home</NuxtLink>
           <a href="#">My stories</a>
           <a href="#">New story</a>
         </div>
         <div class="right">
-          <a href="#">Sign in</a>
+          <NuxtLink to="/sign-in">Sign in</NuxtLink>
           <a href="#">Logout</a>
         </div>
       </nav>
@@ -27,11 +27,11 @@
               <font-awesome-icon icon="times" class="icon" />
             </button>
 
-            <a href="#">Home</a>
+            <NuxtLink to="/">Home</NuxtLink>
             <a href="#">My stories</a>
             <a href="#">New story</a>
-            <a href="#">Sign in</a>
-            <a href="#">Logout</a>
+            <NuxtLink to="/sign-in" class="pill">Sign in</NuxtLink>
+            <a href="#" class="pill">Logout</a>
           </div>
         </nav>
       </div>
@@ -45,6 +45,11 @@ export default {
     return {
       isExpanded: false,
     }
+  },
+  watch: {
+    $route() {
+      this.isExpanded = false
+    },
   },
   methods: {
     toggleMenu() {
@@ -98,6 +103,17 @@ export default {
       margin-bottom: 30px;
       color: vars.$dark-green;
       text-align: center;
+    }
+
+    a:last-of-type {
+      margin-bottom: 0px;
+    }
+
+    .pill {
+      background-color: vars.$dark-green;
+      color: vars.$white;
+      padding: 10px;
+      border-radius: vars.$border-radius;
     }
   }
 }

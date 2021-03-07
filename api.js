@@ -9,15 +9,22 @@ async function callAPI(endpoint, options = {}) {
   }
 
   const url = BASE_URL + endpoint
-  const response = await axios({ url, ...options })
-
-  return response.data
+  return await axios({ url, ...options })
+    .then((res) => res.data)
+    .catch((err) => err.response.data)
 }
 
 const api = {
   auth: {
     googleOAuthURL: `${BASE_URL}/auth/google-oauth`,
 
+    signIn({ creds }) {
+      return callAPI('/auth/sign-in', {
+        method: 'POST',
+        data: creds,
+        withCredentials: true,
+      })
+    },
     userInfo() {
       return callAPI('/auth/user-info', {
         withCredentials: true,

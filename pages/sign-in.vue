@@ -29,6 +29,8 @@
 <script>
 import api from '@/api'
 
+const Cookie = process.client ? require('js-cookie') : undefined
+
 export default {
   data() {
     return {
@@ -58,6 +60,8 @@ export default {
       }
 
       if ('user' in res) {
+        Cookie.set('auth', res.user)
+        this.$store.commit('setAuth', res.user)
         this.$router.push('/')
       }
     },

@@ -4,12 +4,12 @@
       <nav class="desktop-menu">
         <div class="left">
           <NuxtLink to="/">Home</NuxtLink>
-          <a href="#">My stories</a>
+          <a v-if="auth" href="#">My stories</a>
           <a href="#">New story</a>
         </div>
         <div class="right">
-          <NuxtLink to="/sign-in">Sign in</NuxtLink>
-          <a href="#">Logout</a>
+          <NuxtLink v-if="!auth" to="/sign-in">Sign in</NuxtLink>
+          <a v-if="auth" href="#" @click.prevent="logout">Logout</a>
         </div>
       </nav>
       <button class="mobile-menu-button btn-transparent" @click="toggleMenu">
@@ -46,6 +46,11 @@ export default {
       isExpanded: false,
     }
   },
+  computed: {
+    auth() {
+      return this.$store.state.auth
+    },
+  },
   watch: {
     $route() {
       this.isExpanded = false
@@ -54,6 +59,9 @@ export default {
   methods: {
     toggleMenu() {
       this.isExpanded = !this.isExpanded
+    },
+    logout() {
+      this.$store.commit('setAuth', null)
     },
   },
 }

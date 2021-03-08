@@ -15,5 +15,8 @@ export default {
     Menu,
     Footer,
   },
+  mounted() {
+    this.$store.dispatch('initAuth')
+  },
 }
 </script>

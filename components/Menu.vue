@@ -28,10 +28,12 @@
             </button>
 
             <NuxtLink to="/">Home</NuxtLink>
-            <a href="#">My stories</a>
+            <a v-if="auth" href="#">My stories</a>
             <a href="#">New story</a>
-            <NuxtLink to="/sign-in" class="pill">Sign in</NuxtLink>
-            <a href="#" class="pill">Logout</a>
+            <NuxtLink v-if="!auth" to="/sign-in" class="pill">Sign in</NuxtLink>
+            <a v-if="auth" href="#" class="pill" @click.prevent="logout">
+              Logout
+            </a>
           </div>
         </nav>
       </div>

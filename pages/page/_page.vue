@@ -1,11 +1,6 @@
 <template>
   <div class="main-column-limit">
-    <Header>
-      <h1>Oh boi <Orange /></h1>
-      <p>
-        Share those cringe —almost surreal— stories that keep you up at night
-      </p>
-    </Header>
+    <Header />
     <div class="actions">
       <button class="btn btn-dark-green">Add one</button>
       <button class="btn btn-middle-green">My stories</button>
@@ -41,14 +36,12 @@
 <script>
 import Header from '@/components/Header'
 import StoryCard from '@/components/StoryCard'
-import Orange from '@/components/Orange'
 import api from '@/api'
 
 export default {
   components: {
     Header,
     StoryCard,
-    Orange,
   },
   async asyncData({ params }) {
     const { page } = params

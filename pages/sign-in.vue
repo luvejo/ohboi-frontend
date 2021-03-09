@@ -72,36 +72,6 @@ export default {
 <style lang="scss">
 @use '@/assets/css/vars' as vars;
 
-.form-group {
-  border-radius: vars.$border-radius;
-  border: 1px solid vars.$dark-green;
-
-  :first-child {
-    border-radius: 20px 20px 0 0;
-    border-top: none;
-  }
-  :last-child {
-    border-radius: 0 0 20px 20px;
-  }
-  .error {
-    padding: 15px 20px;
-    background-color: vars.$pink;
-    color: vars.$black;
-    text-align: center;
-  }
-  input {
-    border: none;
-    padding: 15px 20px;
-    width: 100%;
-    color: vars.$black;
-    border-top: 1px solid vars.$dark-green;
-  }
-  button {
-    border-top: 1px solid vars.$dark-green;
-    display: block;
-    width: 100%;
-  }
-}
 .sign-in-form .suggested-link {
   margin-top: 10px;
   text-align: center;

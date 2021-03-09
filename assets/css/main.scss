@@ -73,6 +73,10 @@ body {
 a {
   text-decoration: none;
 }
+
+/*------------------------------------------------
+  FORMS
+------------------------------------------------*/
 .btn {
   border: none;
   border-radius: vars.$border-radius;
@@ -99,4 +103,45 @@ a {
 :-ms-input-placeholder,
 ::-ms-input-placeholder {
   color: vars.$gray;
+}
+.form-group {
+  border-radius: vars.$border-radius;
+  border: 1px solid vars.$dark-green;
+
+  :first-child {
+    border-radius: 20px 20px 0 0;
+    border-top: none;
+  }
+  :last-child {
+    border-radius: 0 0 20px 20px;
+  }
+  .error {
+    padding: 15px 20px;
+    background-color: vars.$pink;
+    color: vars.$black;
+    text-align: center;
+  }
+  .success {
+    background-color: vars.$lime;
+    padding: 15px 20px;
+    color: vars.$black;
+    text-align: center;
+  }
+  input,
+  textarea {
+    border: none;
+    padding: 15px 20px;
+    min-width: 100%;
+    max-width: 100%;
+    color: vars.$black;
+    border-top: 1px solid vars.$dark-green;
+  }
+  textarea {
+    min-height: 140px;
+  }
+  button {
+    border-top: 1px solid vars.$dark-green;
+    display: block;
+    width: 100%;
+  }
 }

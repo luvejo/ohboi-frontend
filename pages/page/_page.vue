@@ -20,11 +20,25 @@
           <span>{{ pages.total }}</span>
         </p>
         <div class="nav-actions">
-          <a :href="last_page_link" class="btn btn-middle-green btn-prev">
+          <a
+            :href="last_page_link"
+            :class="[
+              'btn',
+              last_page_link ? 'btn-dark-green' : 'btn-middle-green',
+              'btn-prev',
+            ]"
+          >
             <font-awesome-icon icon="angle-left" />
           </a>
 
-          <a :href="next_page_link" class="btn btn-dark-green btn-next">
+          <a
+            :href="next_page_link"
+            :class="[
+              'btn',
+              next_page_link ? 'btn-dark-green' : 'btn-middle-green',
+              'btn-next',
+            ]"
+          >
             <font-awesome-icon icon="angle-right" />
           </a>
         </div>

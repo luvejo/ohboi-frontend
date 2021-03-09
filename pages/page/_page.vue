@@ -52,9 +52,6 @@ export default {
     }
   },
   computed: {
-    google_oauth() {
-      return api.auth.googleOAuthURL
-    },
     last_page_link() {
       return this.pages.last ? `/page/${this.pages.last}` : null
     },

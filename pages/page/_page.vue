@@ -2,7 +2,7 @@
   <div class="main-column-limit">
     <Header />
     <div class="actions">
-      <button class="btn btn-dark-green">Add one</button>
+      <NuxtLink to="/new-story" class="btn btn-dark-green">Add one</NuxtLink>
       <button class="btn btn-middle-green">My stories</button>
     </div>
     <section class="story-list">

@@ -7,6 +7,7 @@ async function callAPI(endpoint, options = {}) {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   }
+  options.withCredentials = true
 
   const url = BASE_URL + endpoint
   return await axios({ url, ...options })
@@ -35,6 +36,13 @@ const api = {
   stories: {
     list({ page }) {
       return callAPI(`/stories/?page=${page}`)
+    },
+
+    create({ story }) {
+      return callAPI(`/stories/`, {
+        method: 'POST',
+        data: story,
+      })
     },
   },
 }

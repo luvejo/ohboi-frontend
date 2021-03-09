@@ -37,12 +37,19 @@ export default {
       username: 'jose@undefned.sh',
       password: 'secret',
       error: false,
+      redirectURL: '/',
     }
   },
   computed: {
     googleOAuthURL() {
       return api.auth.googleOAuthURL
     },
+  },
+  mounted() {
+    const redirectURL = this.$route.query.redirect
+    if (redirectURL) {
+      this.redirectURL = redirectURL
+    }
   },
   methods: {
     async onSubmit() {
@@ -62,7 +69,7 @@ export default {
       if ('user' in res) {
         Cookie.set('auth', res.user)
         this.$store.commit('setAuth', res.user)
-        this.$router.push('/')
+        this.$router.push(this.redirectURL)
       }
     },
   },

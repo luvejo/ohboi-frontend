@@ -1,3 +1,5 @@
+import api from '@/api'
+
 const Cookie = process.client ? require('js-cookie') : undefined
 
 export const state = () => {
@@ -26,5 +28,10 @@ export const actions = {
     }
 
     commit('setAuth', auth)
+  },
+  cleanAuth({ commit }) {
+    Cookie.remove('auth')
+    api.auth.logout()
+    commit('setAuth', null)
   },
 }

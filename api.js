@@ -22,13 +22,13 @@ const api = {
       return callAPI('/auth/sign-in', {
         method: 'POST',
         data: creds,
-        withCredentials: true,
       })
     },
+    logout() {
+      callAPI('/auth/logout')
+    },
     userInfo() {
-      return callAPI('/auth/user-info', {
-        withCredentials: true,
-      })
+      return callAPI('/auth/user-info')
     },
   },
 

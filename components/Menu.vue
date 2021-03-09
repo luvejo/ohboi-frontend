@@ -63,7 +63,7 @@ export default {
       this.isExpanded = !this.isExpanded
     },
     logout() {
-      this.$store.commit('setAuth', null)
+      this.$store.dispatch('cleanAuth')
     },
   },
 }

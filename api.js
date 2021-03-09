@@ -28,6 +28,12 @@ const api = {
     logout() {
       callAPI('/auth/logout')
     },
+    signUp({ data }) {
+      return callAPI('/auth/sign-up', {
+        method: 'POST',
+        data,
+      })
+    },
     userInfo() {
       return callAPI('/auth/user-info')
     },

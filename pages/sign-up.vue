@@ -1,17 +1,24 @@
 <template>
   <div class="sign-in-form main-column-limit">
     <Header>
-      <h1>Sign in</h1>
+      <h1>Sign up</h1>
     </Header>
 
     <form method="post" class="form-group" @submit.prevent="onSubmit">
       <div v-if="error" class="error">{{ error }}</div>
-      <input v-model="username" type="text" placeholder="Email" />
-      <input v-model="password" type="password" placeholder="Password" />
-      <button class="btn btn-dark-green" type="submit">Sign in</button>
+      <div v-if="success" class="success">{{ success }}</div>
+      <input v-model="email" type="text" placeholder="Email" />
+      <input v-model="username" type="text" placeholder="Username" />
+      <input v-model="password1" type="password" placeholder="Password" />
+      <input
+        v-model="password2"
+        type="password"
+        placeholder="Repeat password"
+      />
+      <button class="btn btn-dark-green" type="submit">Sign up</button>
     </form>
 
-    <NuxtLink to="/sign-up" class="suggested-link">Create account</NuxtLink>
+    <NuxtLink to="/sign-in" class="suggested-link">Sign in instead</NuxtLink>
 
     <div class="separator">
       <div class="line"></div>
@@ -21,7 +28,7 @@
 
     <a :href="googleOAuthURL" class="btn btn-dark-green social-button">
       <font-awesome-icon :icon="['fab', 'google']" />
-      <p>Sign in with <span>Google</span></p>
+      <p>Sign up with <span>Google</span></p>
     </a>
   </div>
 </template>
@@ -29,15 +36,15 @@
 <script>
 import api from '@/api'
 
-const Cookie = process.client ? require('js-cookie') : undefined
-
 export default {
   data() {
     return {
-      username: 'jose@undefned.sh',
-      password: 'secret',
-      error: false,
-      redirectURL: '/',
+      email: 'jose@undefned.sh',
+      username: 'jose',
+      password1: 'secret',
+      password2: 'secret',
+      error: '',
+      success: '',
     }
   },
   computed: {
@@ -45,20 +52,17 @@ export default {
       return api.auth.googleOAuthURL
     },
   },
-  mounted() {
-    const redirectURL = this.$route.query.redirect
-    if (redirectURL) {
-      this.redirectURL = redirectURL
-    }
-  },
   methods: {
     async onSubmit() {
       this.error = ''
+      this.success = ''
 
-      const res = await api.auth.signIn({
-        creds: {
+      const res = await api.auth.signUp({
+        data: {
+          email: this.email,
           username: this.username,
-          password: this.password,
+          password1: this.password1,
+          password2: this.password2,
         },
       })
 
@@ -66,10 +70,12 @@ export default {
         this.error = res.message
       }
 
-      if ('user' in res) {
-        Cookie.set('auth', res.user)
-        this.$store.commit('setAuth', res.user)
-        this.$router.push(this.redirectURL)
+      if ('data' in res) {
+        this.email = ''
+        this.username = ''
+        this.password1 = ''
+        this.password2 = ''
+        this.success = res.message
       }
     },
   },

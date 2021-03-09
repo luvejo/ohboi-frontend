@@ -5,7 +5,7 @@
         <div class="left">
           <NuxtLink to="/">Home</NuxtLink>
           <a v-if="auth" href="#">My stories</a>
-          <a href="#">New story</a>
+          <NuxtLink to="/new-story">New story</NuxtLink>
         </div>
         <div class="right">
           <NuxtLink v-if="!auth" to="/sign-in">Sign in</NuxtLink>
@@ -29,7 +29,7 @@
 
             <NuxtLink to="/">Home</NuxtLink>
             <a v-if="auth" href="#">My stories</a>
-            <a href="#">New story</a>
+            <NuxtLink to="/new-story">New story</NuxtLink>
             <NuxtLink v-if="!auth" to="/sign-in" class="pill">Sign in</NuxtLink>
             <a v-if="auth" href="#" class="pill" @click.prevent="logout">
               Logout

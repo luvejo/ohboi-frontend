@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -51,10 +53,34 @@ export default {
 
   router: {
     extendRoutes(routes, resolve) {
-      routes.push({
-        name: 'home_page',
-        path: '/',
-        component: resolve(__dirname, 'pages/page/_page.vue'),
+      routes.push(
+        {
+          name: 'home_page',
+          path: '/',
+          component: resolve(__dirname, 'pages/page/_page.vue'),
+        },
+        {
+          name: 'my_story_page',
+          path: '/my-stories',
+          component: resolve(__dirname, 'pages/my-stories/page/_page.vue'),
+        }
+      )
+    },
+  },
+
+  generate: {
+    crawler: false,
+    routes() {
+      const baseURL = process.env.API_BASE_URL
+      return axios.get(`${baseURL}/api/stories`).then((res) => {
+        const routes = []
+        const total = res.data.pages.total
+
+        for (let i = 1; i < total; i++) {
+          routes.push(`/page/${i}`)
+        }
+
+        return routes
       })
     },
   },

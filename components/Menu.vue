@@ -4,7 +4,7 @@
       <nav class="desktop-menu">
         <div class="left">
           <NuxtLink to="/">Home</NuxtLink>
-          <a v-if="auth" href="#">My stories</a>
+          <NuxtLink v-if="auth" to="/my-stories">My stories</NuxtLink>
           <NuxtLink to="/new-story">New story</NuxtLink>
         </div>
         <div class="right">
@@ -28,7 +28,7 @@
             </button>
 
             <NuxtLink to="/">Home</NuxtLink>
-            <a v-if="auth" href="#">My stories</a>
+            <NuxtLink v-if="auth" to="/my-stories">My stories</NuxtLink>
             <NuxtLink to="/new-story">New story</NuxtLink>
             <NuxtLink v-if="!auth" to="/sign-in" class="pill">Sign in</NuxtLink>
             <a v-if="auth" href="#" class="pill" @click.prevent="logout">

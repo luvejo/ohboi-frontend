@@ -40,6 +40,10 @@ const api = {
   },
 
   stories: {
+    listByUser({ page, userId }) {
+      return callAPI(`/users/${userId}/stories/?page=${page}`)
+    },
+
     list({ page }) {
       return callAPI(`/stories/?page=${page}`)
     },

@@ -1,6 +1,8 @@
 <template>
   <div class="main-column-limit">
-    <Header />
+    <Header>
+      <h1>My stories</h1>
+    </Header>
     <div class="actions">
       <NuxtLink to="/new-story" class="btn btn-dark-green">Add one</NuxtLink>
     </div>
@@ -11,7 +13,12 @@
         class="story-card"
         :text="story.text"
       />
-      <Pagination :pages="pages" @page-search="onPageSearch" />
+      <Pagination
+        v-if="pages"
+        :pages="pages"
+        url-prefix="/my-stories"
+        @page-search="onPageSearch"
+      />
     </section>
   </div>
 </template>
@@ -28,14 +35,23 @@ export default {
     StoryCard,
     Pagination,
   },
-  async asyncData({ params }) {
-    const { page } = params
-    const res = await api.stories.list({ page })
-
+  middleware: 'authenticated',
+  data() {
     return {
-      stories: res.data,
-      pages: res.pages,
+      stories: [],
+      pages: {},
     }
+  },
+  async mounted() {
+    const { page } = this.$route.params
+
+    this.$store.dispatch('initAuth')
+    const userId = this.$store.state.auth.id
+
+    const res = await api.stories.listByUser({ page, userId })
+
+    this.stories = res.data
+    this.pages = res.pages
   },
   methods: {
     onPageSearch(page) {

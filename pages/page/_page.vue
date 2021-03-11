@@ -40,8 +40,7 @@ export default {
   methods: {
     onPageSearch(page) {
       if (page <= this.pages.total && page >= 1) {
-        const matchedPath = this.$route.matched[0].path
-        this.$router.push(matchedPath.replace(':page?', page))
+        this.$router.push(`/page/${page}`)
       }
     },
   },

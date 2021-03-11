@@ -48,10 +48,22 @@ const api = {
       return callAPI(`/stories/?page=${page}`)
     },
 
+    get({ storyId }) {
+      return callAPI(`/stories/${storyId}`)
+    },
+
     create({ story }) {
       return callAPI(`/stories/`, {
         method: 'POST',
         data: story,
+      })
+    },
+
+    update({ story }) {
+      const { id: storyId, ...data } = story
+      return callAPI(`/stories/${storyId}`, {
+        method: 'PUT',
+        data,
       })
     },
   },

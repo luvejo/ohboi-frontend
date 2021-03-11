@@ -1,22 +1,38 @@
 <template>
   <article class="story-card">
-    <p>
-      {{ visibleText }}
-    </p>
-    <button
-      v-show="!isExpanded"
-      class="btn-transparent btn-see-more"
-      @click="toggleText"
-    >
-      See more
-    </button>
+    <div class="content">
+      <p>
+        {{ visibleText }}
+      </p>
+      <button
+        v-show="!isExpanded"
+        class="btn-transparent btn-see-more"
+        @click="toggleText"
+      >
+        See more
+      </button>
+    </div>
+    <div v-if="isAuthor" class="actions">
+      <button class="btn btn-dark-green btn-delete">Delete</button>
+      <NuxtLink class="btn btn-dark-green btn-edit" :to="editLink">
+        Edit
+      </NuxtLink>
+    </div>
   </article>
 </template>
 
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     text: {
+      type: String,
+      required: true,
+    },
+    author: {
       type: String,
       required: true,
     },
@@ -35,6 +51,13 @@ export default {
       return this.isExpanded
         ? this.text
         : `${this.text.substring(0, this.visibleLength)}[...]`
+    },
+    isAuthor() {
+      const auth = this.$store.state.auth
+      return auth && auth.id === this.author
+    },
+    editLink() {
+      return `/my-stories/${this.id}/edit`
     },
   },
   mounted() {
@@ -56,9 +79,11 @@ export default {
 .story-card {
   background-color: vars.$white;
   border-radius: vars.$border-radius;
-  padding: 20px;
   margin-bottom: 20px;
 
+  .content {
+    padding: 20px;
+  }
   p {
     margin: 0px;
     color: vars.$black;
@@ -66,6 +91,25 @@ export default {
   }
   .btn-see-more {
     width: 100%;
+  }
+  .actions {
+    display: flex;
+    flex-direction: row;
+
+    .btn {
+      flex-grow: 1;
+      text-align: center;
+      width: 50%;
+    }
+    .btn-delete {
+      border-radius: 0 0 0 vars.$border-radius;
+      margin-right: 1px;
+      color: vars.$white;
+      background-color: vars.$black;
+    }
+    .btn-edit {
+      border-radius: 0 0 vars.$border-radius 0;
+    }
   }
 }
 </style>

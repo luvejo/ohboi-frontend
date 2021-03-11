@@ -9,9 +9,11 @@
     <section class="story-list">
       <StoryCard
         v-for="story in stories"
+        :id="story._id"
         :key="story._id"
         class="story-card"
         :text="story.text"
+        :author="story.author"
       />
       <Pagination
         v-if="pages"

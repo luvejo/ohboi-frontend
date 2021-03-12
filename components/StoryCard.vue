@@ -12,17 +12,32 @@
         See more
       </button>
     </div>
-    <div v-if="isAuthor" class="actions">
-      <button class="btn btn-dark-green btn-delete">Delete</button>
+
+    <div v-if="isAuthor" class="story-card-actions">
+      <button class="btn btn-dark-green btn-delete" @click="toggleDeleteModal">
+        Delete
+      </button>
       <NuxtLink class="btn btn-dark-green btn-edit" :to="editLink">
         Edit
       </NuxtLink>
     </div>
+
+    <DeleteModal
+      v-show="deleteModal"
+      :story-id="id"
+      @delete="onDelete"
+      @close="toggleDeleteModal"
+    />
   </article>
 </template>
 
 <script>
+import DeleteModal from '@/components/DeleteModal'
+
 export default {
+  components: {
+    DeleteModal,
+  },
   props: {
     id: {
       type: String,
@@ -44,6 +59,7 @@ export default {
   data() {
     return {
       isExpanded: false,
+      deleteModal: false,
     }
   },
   computed: {
@@ -69,6 +85,12 @@ export default {
     toggleText() {
       this.isExpanded = !this.isExpanded
     },
+    toggleDeleteModal() {
+      this.deleteModal = !this.deleteModal
+    },
+    onDelete(data) {
+      this.$emit('delete', data)
+    },
   },
 }
 </script>
@@ -92,7 +114,7 @@ export default {
   .btn-see-more {
     width: 100%;
   }
-  .actions {
+  .story-card-actions {
     display: flex;
     flex-direction: row;
 

@@ -66,6 +66,12 @@ const api = {
         data,
       })
     },
+
+    remove({ storyId }) {
+      return callAPI(`/stories/${storyId}`, {
+        method: 'DELETE',
+      })
+    },
   },
 }
 

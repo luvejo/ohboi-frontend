@@ -12,6 +12,7 @@
         class="story-card"
         :text="story.text"
         :author="story.author"
+        @delete="onDeleteStory"
       />
       <Pagination :pages="pages" @page-search="onPageSearch" />
     </section>
@@ -44,6 +45,11 @@ export default {
       if (page <= this.pages.total && page >= 1) {
         this.$router.push(`/page/${page}`)
       }
+    },
+    onDeleteStory({ id }) {
+      this.stories = this.stories.filter((story) => {
+        return story._id !== id
+      })
     },
   },
 }

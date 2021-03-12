@@ -93,6 +93,10 @@ a {
   color: vars.$white;
   cursor: default;
 }
+.btn-black {
+  background-color: vars.$black;
+  color: vars.$white;
+}
 .btn-transparent {
   border: none;
   background-color: transparent;
@@ -155,4 +159,12 @@ a {
   justify-content: space-between;
   margin-bottom: 20px;
   flex-direction: row-reverse;
+}
+.empty-state {
+  text-align: center;
+  width: 100%;
+  background-color: vars.$white;
+  color: vars.$black;
+  padding: 20px;
+  border-radius: vars.$border-radius;
 }

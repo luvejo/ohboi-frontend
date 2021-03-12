@@ -14,13 +14,15 @@
         class="story-card"
         :text="story.text"
         :author="story.author"
+        @delete="onDeleteStory"
       />
       <Pagination
-        v-if="pages"
+        v-if="pages.total > 0"
         :pages="pages"
         url-prefix="/my-stories"
         @page-search="onPageSearch"
       />
+      <p class="empty-state">You haven't written any story yet.</p>
     </section>
   </div>
 </template>
@@ -60,6 +62,11 @@ export default {
       if (page <= this.pages.total && page >= 1) {
         this.$router.push(`/my-stories/page/${page}`)
       }
+    },
+    onDeleteStory({ id }) {
+      this.stories = this.stories.filter((story) => {
+        return story._id !== id
+      })
     },
   },
 }

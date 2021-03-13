@@ -22,7 +22,9 @@
         url-prefix="/my-stories"
         @page-search="onPageSearch"
       />
-      <p class="empty-state">You haven't written any story yet.</p>
+      <p v-if="pages.total === 0" class="empty-state">
+        You haven't written any story yet.
+      </p>
     </section>
   </div>
 </template>

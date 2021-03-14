@@ -1,8 +1,11 @@
 <template>
   <div class="main-container">
     <Menu />
-    <Nuxt class="content-container" />
-    <Footer />
+    <Nuxt
+      class="content-container"
+      :style="{ paddingBottom: contentPaddingBottom }"
+    />
+    <Footer ref="footer" />
   </div>
 </template>
 
@@ -15,8 +18,21 @@ export default {
     Menu,
     Footer,
   },
+  data() {
+    return {
+      contentPaddingBottom: null,
+    }
+  },
   mounted() {
     this.$store.dispatch('initAuth')
+    this.adjustContentPadding()
+  },
+  methods: {
+    adjustContentPadding() {
+      const footerHeight = this.$refs.footer.$el.clientHeight
+      const actualPadding = 60
+      this.contentPaddingBottom = `${footerHeight + actualPadding}px`
+    },
   },
 }
 </script>
@@ -33,11 +49,19 @@ body,
   position: relative;
 }
 .content-container {
-  padding-bottom: 260px;
+  padding-bottom: 370px + 60px;
 }
 footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+/*----------------------------------------------
+  MEDIA QUERIES
+-----------------------------------------------*/
+@media screen and (min-width: 480px) {
+  .content-container {
+    padding-bottom: 325px + 60px;
+  }
 }
 </style>

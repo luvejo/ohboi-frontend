@@ -32,11 +32,11 @@ Happy hacking!
 
 ## Demo
 
-At ohboi.luvejo.me.
+At [ohboi.luvejo.me](https://ohboi.luvejo.me).
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 
 [1]: https://github.com/luvejo/ohboi-backend

@@ -1,0 +1,14 @@
+steps:
+  # Install
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["install"]
+
+  # Build
+  - name: "gcr.io/cloud-builders/npm"
+    args: ["run", "generate"]
+    env:
+      - "API_BASE_URL=${_API_BASE_URL}"
+
+  # Deploy
+  - name: "gcr.io/$PROJECT_ID/firebase"
+    args: ["deploy", "--only=hosting"]

@@ -1,20 +1,42 @@
-# ohboi-frontend
+# Oh boi - Frontend
 
-## Build Setup
+The frontend side of a Jamstack sample project built on Express, Nuxt and Docker. Frontend and [backend][1] are powered by Firebase Hosting, Google Cloud Build and Cloud Run.
+
+As a user you can:
+
+- Sign up.
+- Authenticate with email and password.
+- Authenticate with your Google account.
+- CRUD story entries.
+
+
+## Setting Up
+
+Once you have the backend running:
 
 ```bash
-# install dependencies
-$ npm install
+# 1. Download this repo.
+git clone https://github.com/luvejo/ohboi-frontend
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+# 2. Install it.
+cd ohboi-frontend && npm install
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Rename `.env.example` as `.env` and customize it. Then just:
+
+```bash
+npm run dev
+```
+
+Happy hacking!
+
+## Demo
+
+At ohboi.luvejo.me.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+[1]: https://github.com/luvejo/ohboi-backend

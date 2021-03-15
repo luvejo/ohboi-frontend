@@ -34,8 +34,8 @@ const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   data() {
     return {
-      username: 'jose@undefned.sh',
-      password: 'secret',
+      username: '',
+      password: '',
       error: false,
       redirectURL: '/',
     }

@@ -39,10 +39,10 @@ import api from '@/api'
 export default {
   data() {
     return {
-      email: 'jose@undefned.sh',
-      username: 'jose',
-      password1: 'secret',
-      password2: 'secret',
+      email: '',
+      username: '',
+      password1: '',
+      password2: '',
       error: '',
       success: '',
     }

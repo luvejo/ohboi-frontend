@@ -49,11 +49,12 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
+  z-index: 1;
 
   .window {
     padding: 20px;

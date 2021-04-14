@@ -52,6 +52,8 @@ export default {
   },
 
   router: {
+    linkExactActiveClass: 'active-link',
+
     extendRoutes(routes, resolve) {
       routes.push(
         {

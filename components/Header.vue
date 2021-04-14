@@ -44,7 +44,7 @@ export default {
 -----------------------------------------------*/
 @media screen and (min-width: 480px) {
   .main-header {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 }
 </style>

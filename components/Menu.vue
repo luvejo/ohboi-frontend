@@ -86,6 +86,15 @@ export default {
 }
 .desktop-menu {
   display: none;
+
+  a {
+    font-weight: bold;
+    padding-bottom: 5px;
+
+    &.active-link {
+      border-bottom: 3px solid vars.$white;
+    }
+  }
 }
 .mobile-menu {
   position: absolute;

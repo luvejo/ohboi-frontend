@@ -13,7 +13,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { property: 'og:image', content: '/miniature.png' },
+      {
+        property: 'og:image',
+        content:
+          'https://firebasestorage.googleapis.com/v0/b/oh-boi.appspot.com/o/ohboi.jpg?alt=media',
+      },
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
